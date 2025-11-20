@@ -32,8 +32,6 @@ public function up(): void
     // 3. Buat tabel Pivot (Penghubung Kos & Fasilitas)
     Schema::create('kos_facility', function (Blueprint $table) {
         $table->id();
-
-        // PERBAIKAN DI SINI: Kita sebutkan nama tabelnya secara eksplisit!
         $table->foreignId('kos_id')->constrained('koses')->onDelete('cascade');
         $table->foreignId('facility_id')->constrained('facilities')->onDelete('cascade');
     });

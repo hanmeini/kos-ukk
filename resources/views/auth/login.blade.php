@@ -112,7 +112,7 @@
                             </div>
                         </div>
                         <div class="mt-6 text-center">
-                            <a href="{{ route('home') }}" class="text-stone-600 font-medium hover:text-stone-800 hover:underline">Halaman Utama</a>
+                            <a href="/" class="text-stone-600 font-medium hover:text-stone-800 hover:underline">Halaman Utama</a>
                         </div>
                     </div>
 
