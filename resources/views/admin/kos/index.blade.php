@@ -38,10 +38,29 @@
                         <td class="py-3 px-6 font-medium">{{ $kos->name }}</td>
                         <td class="py-3 px-6">{{ $kos->location }}</td>
                         <td class="py-3 px-6">Rp {{ number_format($kos->price, 0, ',', '.') }}</td>
-                        <td class="py-3 px-6">
-                            <span class="bg-green-200 text-green-600 py-1 px-3 rounded-full text-xs font-bold">
-                                {{ $kos->status }}
-                            </span>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <form action="{{ route('admin.kos.updateStatus', $kos->id) }}" method="POST">
+                                @csrf
+                                @method('PATCH')
+
+                                <select name="status" onchange="this.form.submit()"
+                                    class="text-xs font-bold rounded-full px-3 py-1 border-none focus:ring-2 cursor-pointer transition shadow-sm
+                                    {{ $kos->status == 'Tersedia' ? 'bg-green-100 text-green-800 focus:ring-green-300' : '' }}
+                                    {{ $kos->status == 'Penuh' ? 'bg-red-100 text-red-800 focus:ring-red-300' : '' }}
+                                    {{ $kos->status == 'Tidak Tersedia' ? 'bg-stone-200 text-stone-600 focus:ring-stone-300' : '' }}
+                                    ">
+
+                                    <option value="Tersedia" {{ $kos->status == 'Tersedia' ? 'selected' : '' }}>
+                                        ✅ Tersedia
+                                    </option>
+                                    <option value="Penuh" {{ $kos->status == 'Penuh' ? 'selected' : '' }}>
+                                        ⛔ Penuh
+                                    </option>
+                                    <option value="Tidak Tersedia" {{ $kos->status == 'Tidak Tersedia' ? 'selected' : '' }}>
+                                        🔧 Tidak Tersedia
+                                    </option>
+                                </select>
+                            </form>
                         </td>
                         <td class="py-3 px-6">
                             @if($kos->image)

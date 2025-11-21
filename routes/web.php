@@ -46,4 +46,5 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->group(function () {
     Route::put('/bookings/{id}', [AdminBookingController::class, 'update'])->name('admin.bookings.update');
     Route::resource('facilities', FacilityController::class)->only(['index', 'store', 'destroy']);
     Route::resource('users', UserController::class)->only(['index', 'destroy']);
+    Route::patch('/kos/{id}/update-status', [KosController::class, 'updateStatus'])->name('admin.kos.updateStatus');
 });

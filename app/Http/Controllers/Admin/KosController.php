@@ -107,6 +107,18 @@ class KosController extends Controller
         return redirect()->route('admin.kos.index')->with('success', 'Data kos berhasil diperbarui! ✨');
     }
 
+    public function updateStatus(Request $request, $id)
+    {
+        $request->validate([
+            'status' => 'required|in:Tersedia,Penuh,Tidak Tersedia'
+        ]);
+
+        $kos = Kos::findOrFail($id);
+        $kos->update(['status' => $request->status]);
+
+        return redirect()->back()->with('success', 'Status kos berhasil diperbarui!');
+    }
+
     // 6. Hapus Kos
     public function destroy($id)
     {
